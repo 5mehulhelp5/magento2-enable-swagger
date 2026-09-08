@@ -1,73 +1,31 @@
-# IntegerNet_EnableSwagger Magento Module
-<div align="center">
+# Enable Swagger in Production for Magento 2 (SISL fork)
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-</div>
+Re-enables the Swagger API documentation UI (`/swagger`) in Magento 2 **production mode**.
+Magento disabled Swagger in production since 2.4.4, which is safe by default but a real
+nuisance when you need to inspect or test the REST API on a staging or production-like
+environment. This module adds a config flag to turn it back on where you want it.
 
----
+Maintained fork of `integer-net/magento2-enable-swagger`, verified on **Magento 2.4.9 / PHP 8.4**.
 
-Adds the option to re-enable Swagger via configuration. It's disabled in production mode since Magento 2.4.4. 
+## What changed vs upstream
 
-## Installation
+- Bumped the `php` constraint from `~7.1 … ~8.1` to **8.1–8.5** — the original **would not
+  install on PHP 8.3/8.4**, i.e. a hard block on Magento 2.4.9.
+- Kept `magento/framework ^102.0.0||^103.0.0`; removed the post-install phpcs script.
 
-1. Install it into your Magento 2 project with composer:
-    ```
-    composer require integer-net/magento2-enable-swagger
-    ```
+> Enable it deliberately. Exposing Swagger in production has a security trade-off.
 
-2. Enable module
-    ```
-    bin/magento setup:upgrade
-    ```
+## Install
 
-## Configuration
+```bash
+composer config repositories.swagger vcs https://github.com/SISL-source/magento2-enable-swagger
+composer require integer-net/magento2-enable-swagger:dev-main
+bin/magento module:enable IntegerNet_EnableSwagger
+bin/magento setup:upgrade
+```
 
-Enable swagger for your environment:
-
-    bin/magento config:set --lock-env dev/swagger/active 1
-
-We recommend using the `--lock-env` switch so this configuration doesn't get lost when importing a database dump.
-
-We recommend to not enable Swagger if there are no other access restrictions in place. These can be:
-
-- Required VPN
-- Basic Auth
-- Access restricted to predefined IPs
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security
-
-If you discover any security related issues, please email security@integer-net.de instead of using the issue tracker.
-
-## Credits
-
-- [Andreas von Studnitz][link-author]
-- [All Contributors][link-contributors]
+Then enable it under *Stores → Configuration → Services → Swagger* and open `/swagger`.
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
-[ico-version]: https://img.shields.io/packagist/v/integer-net/magento2-enable-swagger.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/integer-net/magento2-enable-swagger/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/integer-net/magento2-enable-swagger?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/integer-net/magento2-enable-swagger.svg?style=flat-square
-[ico-maintainability]: https://img.shields.io/codeclimate/maintainability/integer-net/magento2-enable-swagger?style=flat-square
-[ico-compatibility]: https://img.shields.io/badge/magento-2.3%20|%202.4-brightgreen.svg?logo=magento&longCache=true&style=flat-square
-
-[link-packagist]: https://packagist.org/packages/integer-net/magento2-enable-swagger
-[link-travis]: https://travis-ci.org/integer-net/magento2-enable-swagger
-[link-scrutinizer]: https://scrutinizer-ci.com/g/integer-net/magento2-enable-swagger/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/integer-net/magento2-enable-swagger
-[link-maintainability]: https://codeclimate.com/github/integer-net/magento2-enable-swagger
-[link-author]: https://github.com/integer-net
-[link-contributors]: ../../contributors
+MIT (upstream, by integer_net). Maintained by [SISL](https://sisl.pl).
