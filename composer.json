@@ -1,5 +1,5 @@
 {
-    "name": "integer-net/magento2-enable-swagger",
+    "name": "sisl-source/magento2-enable-swagger",
     "description": "Adds the option to re-enable Swagger via configuration. It's disabled in production mode sind Magento 2.4.4. ",
     "type": "magento2-module",
     "license": "MIT",
