@@ -18,8 +18,7 @@ Maintained fork of `integer-net/magento2-enable-swagger`, verified on **Magento 
 ## Install
 
 ```bash
-composer config repositories.swagger vcs https://github.com/SISL-source/magento2-enable-swagger
-composer require integer-net/magento2-enable-swagger:dev-main
+composer require sisl-source/magento2-enable-swagger
 bin/magento module:enable IntegerNet_EnableSwagger
 bin/magento setup:upgrade
 ```
